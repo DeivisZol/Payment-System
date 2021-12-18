@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="deivis.paymentsystem.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="683.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="deivis.paymentsystem.HelloController">
+   <children>
+      <Label layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="183.0" text="Sukurti grupe" textFill="WHITE" />
+      <TextField fx:id="createGroupName" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="204.0" promptText="Grupes pavadinimas" />
+      <Button fx:id="createGroupButton" layoutX="15.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Sukurti" />
+      <Button fx:id="printToCvsFile" layoutX="123.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Ataskaita(cvs)" />
+      <Button fx:id="printToPdfFile" layoutX="17.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Ataskaita(pdf)" />
+      <ChoiceBox fx:id="selectGroup" layoutX="322.0" layoutY="90.0" prefHeight="25.0" prefWidth="267.0" />
+      <Label layoutX="326.0" layoutY="10.0" prefHeight="17.0" prefWidth="267.0" text="Sukurti studenta" textFill="WHITE" />
+      <TextField fx:id="studentName" layoutX="326.0" layoutY="35.0" prefHeight="25.0" prefWidth="87.0" promptText="Vardas" />
+      <TextField fx:id="studentId" layoutX="529.0" layoutY="35.0" prefHeight="25.0" prefWidth="60.0" promptText="Id" />
+      <Button fx:id="createStudentButton" layoutX="322.0" layoutY="139.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="267.0" text="Sukurti" />
+      <TextField fx:id="studentSurname" layoutX="425.0" layoutY="35.0" prefHeight="25.0" prefWidth="96.0" promptText="Pavarde" />
+      <Label layoutX="324.0" layoutY="70.0" prefHeight="17.0" prefWidth="177.0" text="Priskirti grupe" textFill="WHITE" />
+      <Label layoutX="16.0" layoutY="111.0" prefHeight="17.0" prefWidth="183.0" text="Priskirti grupei mokesti" textFill="WHITE" />
+      <ComboBox fx:id="groupMonthPayment" layoutX="15.0" layoutY="139.0" prefHeight="25.0" prefWidth="204.0" />
+      <TextField fx:id="groupPayment" layoutX="116.0" layoutY="195.0" prefHeight="25.0" prefWidth="102.0" promptText="Suma" />
+      <Button fx:id="groupPaymentButton" layoutX="15.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Priskirti" />
+      <ComboBox fx:id="selectMonth" layoutX="15.0" layoutY="195.0" prefHeight="25.0" prefWidth="87.0" />
+      <Label layoutX="17.0" layoutY="170.0" prefHeight="17.0" prefWidth="72.0" text="Menesis" textFill="WHITE" />
+      <TextField fx:id="loadFromFileName" layoutX="15.0" layoutY="379.0" prefHeight="25.0" prefWidth="136.0" promptText="failo pavadinimas" />
+      <Button fx:id="loadTableButton" layoutX="15.0" layoutY="284.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Rodyti lentele" textFill="#790000">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="15.0" layoutY="347.0" prefHeight="17.0" prefWidth="197.0" text="Uzkrauti duomenis is failo" textFill="WHITE" />
+      <Button fx:id="loadFromFileButton" layoutX="160.0" layoutY="379.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Uzkrauti" />
+      <TableView fx:id="table" layoutX="239.0" layoutY="187.0" prefHeight="320.0" prefWidth="436.0">
+        <columns>
+          <TableColumn fx:id="tableId" prefWidth="51.0" text="ID" />
+          <TableColumn fx:id="tableName" text="Vardas" />
+            <TableColumn fx:id="tableSurname" prefWidth="75.0" text="Pavarde" />
+            <TableColumn fx:id="tableGroup" prefWidth="75.0" text="Grupe" />
+            <TableColumn fx:id="tableMonth" prefWidth="75.0" text="Menesis" />
+            <TableColumn fx:id="tablePaymentAmount" prefWidth="79.0" text="Suma" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
