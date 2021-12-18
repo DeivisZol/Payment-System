@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="683.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="deivis.paymentsystem.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="683.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="deivis.paymentsystem.HelloController">
    <children>
       <Label layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="183.0" text="Sukurti grupe" textFill="WHITE" />
       <TextField fx:id="createGroupName" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="204.0" promptText="Grupes pavadinimas" />
@@ -19,10 +21,27 @@
       <TextField fx:id="studentSurname" layoutX="425.0" layoutY="35.0" prefHeight="25.0" prefWidth="96.0" promptText="Pavarde" />
       <Label layoutX="324.0" layoutY="70.0" prefHeight="17.0" prefWidth="177.0" text="Priskirti grupe" textFill="WHITE" />
       <Label layoutX="16.0" layoutY="111.0" prefHeight="17.0" prefWidth="183.0" text="Priskirti grupei mokesti" textFill="WHITE" />
-      <ComboBox fx:id="groupMonthPayment" layoutX="15.0" layoutY="139.0" prefHeight="25.0" prefWidth="204.0" />
-      <TextField fx:id="groupPayment" layoutX="116.0" layoutY="195.0" prefHeight="25.0" prefWidth="102.0" promptText="Suma" />
+      <ChoiceBox fx:id="groupPayment" layoutX="15.0" layoutY="139.0" prefHeight="25.0" prefWidth="204.0" />
+      <TextField fx:id="groupMonthPayment" layoutX="116.0" layoutY="195.0" prefHeight="25.0" prefWidth="102.0" promptText="Suma" />
       <Button fx:id="groupPaymentButton" layoutX="15.0" layoutY="235.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Priskirti" />
-      <ComboBox fx:id="selectMonth" layoutX="15.0" layoutY="195.0" prefHeight="25.0" prefWidth="87.0" />
+      <ChoiceBox fx:id="selectMonth" layoutX="15.0" layoutY="195.0" prefHeight="25.0" prefWidth="87.0" value="Sausis">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Sausis" />
+                  <String fx:value="Vasaris" />
+                  <String fx:value="Kovas" />
+                  <String fx:value="Balandis" />
+                  <String fx:value="Geguze" />
+                  <String fx:value="Birzelis" />
+                  <String fx:value="Liepa" />
+                  <String fx:value="Rugpjutis" />
+                  <String fx:value="Rugsejis" />
+                  <String fx:value="Spalis" />
+                  <String fx:value="Lapkritis" />
+                  <String fx:value="Gruodis" />
+              </FXCollections>
+          </items>
+   </ChoiceBox>
       <Label layoutX="17.0" layoutY="170.0" prefHeight="17.0" prefWidth="72.0" text="Menesis" textFill="WHITE" />
       <TextField fx:id="loadFromFileName" layoutX="15.0" layoutY="379.0" prefHeight="25.0" prefWidth="136.0" promptText="failo pavadinimas" />
       <Button fx:id="loadTableButton" layoutX="15.0" layoutY="284.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Rodyti lentele" textFill="#790000">
