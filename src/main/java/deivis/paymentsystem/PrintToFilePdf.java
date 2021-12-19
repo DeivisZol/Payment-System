@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PrintToFilePdf implements PrintToFile{
 
     @Override
-    public void printToFile(ArrayList<Group> groups) {
+    public void printToFile(TableDataRow[] groups) {
 
     }
 }

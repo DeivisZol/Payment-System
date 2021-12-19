@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class HelloController implements Initializable{
+public class HelloController implements Initializable {
     @FXML
     public Button createGroupButton;
     @FXML
@@ -29,9 +29,6 @@ public class HelloController implements Initializable{
     public ChoiceBox<String> selectMonth;
 
 
-
-
-
     @FXML
     public Button createStudentButton;
     @FXML
@@ -42,7 +39,6 @@ public class HelloController implements Initializable{
     public TextField studentId;
     @FXML
     public ChoiceBox<String> selectGroup;
-
 
 
     @FXML
@@ -59,7 +55,6 @@ public class HelloController implements Initializable{
     public ChoiceBox<String> selectMonthFrom;
     @FXML
     public ChoiceBox<String> selectMonthTo;
-
 
 
     @FXML
@@ -93,30 +88,15 @@ public class HelloController implements Initializable{
     private void addGroupMonthPrice(ActionEvent actionEvent) {
         double groupMonthPayment = Double.parseDouble(this.groupMonthPayment.getText());
         Group temp;
-        int month = 0;
         int position = 0;
-        for(int i = 0; groups.size() > i ;i++) {
-            if(groups.get(i).getGroupName().equals(groupPayment.getSelectionModel().getSelectedItem())) {
+        for (int i = 0; groups.size() > i; i++) {
+            if (groups.get(i).getGroupName().equals(groupPayment.getSelectionModel().getSelectedItem())) {
                 position = i;
             }
         }
         temp = groups.get(position);
-        switch (selectMonth.getSelectionModel().getSelectedItem()) {
-            case "Sausis" -> month = 1;
-            case "Vasaris" -> month = 2;
-            case "Kovas" -> month = 3;
-            case "Balandis" -> month = 4;
-            case "Geguze" -> month = 5;
-            case "Birzelis" -> month = 6;
-            case "Liepa" -> month = 7;
-            case "Rugpjutis" -> month = 8;
-            case "Rugsejis" -> month = 9;
-            case "Spalis" -> month = 10;
-            case "Lapkritis" -> month = 11;
-            case "Gruodis" -> month = 12;
-        }
-        temp.addMonthPayment(month, groupMonthPayment);
-        groups.set(position,temp);
+        temp.addMonthPayment(monthNameToNumber(selectMonth.getSelectionModel().getSelectedItem()), groupMonthPayment);
+        groups.set(position, temp);
     }
 
     private void createStudent(ActionEvent actionEvent) {
@@ -126,19 +106,18 @@ public class HelloController implements Initializable{
         student.setId(Integer.parseInt(this.studentId.getText()));
         Group temp;
         int position = 0;
-        for(int i = 0; groups.size() > i ;i++) {
-            if(groups.get(i).getGroupName().equals(selectGroup.getSelectionModel().getSelectedItem())) {
+        for (int i = 0; groups.size() > i; i++) {
+            if (groups.get(i).getGroupName().equals(selectGroup.getSelectionModel().getSelectedItem())) {
                 position = i;
                 break;
             }
         }
         temp = groups.get(position);
         temp.addStudent(student);
-        groups.set(position,temp);
+        groups.set(position, temp);
     }
 
     private void printToScreen(ActionEvent actionEvent) {
-        Table results = new Table(groups);
         table.getItems().clear();
         tableId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableName.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -146,16 +125,17 @@ public class HelloController implements Initializable{
         tableMonth.setCellValueFactory(new PropertyValueFactory<>("Month"));
         tableGroup.setCellValueFactory(new PropertyValueFactory<>("Group"));
         tablePaymentAmount.setCellValueFactory(new PropertyValueFactory<>("PaymentAmount"));
+        table.getItems().addAll(getFilteredResults());
+    }
 
+    private TableDataRow[] getFilteredResults() {
+        Table results = new Table(groups);
         int monthFrom = monthNameToNumber(selectMonthFrom.getSelectionModel().getSelectedItem());
         int monthTo = monthNameToNumber(selectMonthTo.getSelectionModel().getSelectedItem());
-
-        TableDataRow[] data = Arrays.stream(results.getFilledTable())
+        return Arrays.stream(results.getFilledTable())
                 .filter(row -> monthNameToNumber(row.getMonth()) >= monthFrom)
                 .filter(row -> monthNameToNumber(row.getMonth()) <= monthTo)
                 .toArray(TableDataRow[]::new);
-
-        table.getItems().addAll(data);
     }
 
     private int monthNameToNumber(String name) {
@@ -176,15 +156,18 @@ public class HelloController implements Initializable{
         };
     }
 
-    public void printToPdfFile(ActionEvent actionEvent){
+    public void printToPdfFile(ActionEvent actionEvent) {
         PrintToFilePdf print = new PrintToFilePdf();
-        print.printToFile(groups);
+        print.printToFile(getFilteredResults());
     }
-    private void printToCvsFile(ActionEvent actionEvent){
+
+    private void printToCvsFile(ActionEvent actionEvent) {
         PrintToFileCvs print = new PrintToFileCvs();
-        print.printToFile(groups);
+        print.printToFile(getFilteredResults());
     }
-    private void loadFromFile(ActionEvent actionEvent){}
+
+    private void loadFromFile(ActionEvent actionEvent) {
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

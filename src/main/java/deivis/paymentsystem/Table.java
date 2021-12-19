@@ -4,7 +4,7 @@ import logic.Group;
 
 import java.util.ArrayList;
 
-public class Table{
+public class Table {
     private ArrayList<Group> groups;
     private TableDataRow[] filledTable;
 
