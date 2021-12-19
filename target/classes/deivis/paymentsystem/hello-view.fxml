@@ -11,7 +11,7 @@
       <Label layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="183.0" text="Sukurti grupe" textFill="WHITE" />
       <TextField fx:id="createGroupName" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="204.0" promptText="Grupes pavadinimas" />
       <Button fx:id="createGroupButton" layoutX="15.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Sukurti" />
-      <Button fx:id="printToCvsFile" layoutX="123.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Ataskaita(cvs)" />
+      <Button fx:id="printToCvsFile" layoutX="123.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Ataskaita(csv)" />
       <Button fx:id="printToPdfFile" layoutX="17.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Ataskaita(pdf)" />
       <ChoiceBox fx:id="selectGroup" layoutX="322.0" layoutY="90.0" prefHeight="25.0" prefWidth="267.0" />
       <Label layoutX="326.0" layoutY="10.0" prefHeight="17.0" prefWidth="267.0" text="Sukurti studenta" textFill="WHITE" />

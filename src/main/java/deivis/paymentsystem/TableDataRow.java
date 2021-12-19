@@ -1,12 +1,12 @@
 package deivis.paymentsystem;
 
 public class TableDataRow {
-    protected int id;
-    protected String Name;
-    protected String Surname;
-    protected String Month;
-    protected String Group;
-    protected double PaymentAmount;
+    private int id;
+    private String Name;
+    private String Surname;
+    private String Month;
+    private String Group;
+    private double PaymentAmount;
 
     public int getId() {
         return id;

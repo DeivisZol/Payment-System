@@ -1,8 +1,8 @@
 sep=,
 Id,Vardas,Pavarde,Grupe,Menesis,Suma
-2,23,23,Grupe,Sausis,3.0
-2,23,23,Grupe,Kovas,337.0
-2,23,23,Grupe,Geguze,33.0
-22,2345,235,Grupe,Sausis,3.0
-22,2345,235,Grupe,Kovas,337.0
-22,2345,235,Grupe,Geguze,33.0
+1,Deivis,Deivaitis,Pirma,Birzelis,2355.0
+1,Deivis,Deivaitis,Pirma,Lapkritis,200.0
+2,Jonas,Deivaitis,Pirma,Birzelis,2355.0
+2,Jonas,Deivaitis,Pirma,Lapkritis,200.0
+3,Jokubas,Deivaitis,Antra,Birzelis,600.0
+3,Jokubas,Deivaitis,Antra,Rugpjutis,60000.0

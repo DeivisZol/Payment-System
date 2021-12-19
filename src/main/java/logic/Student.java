@@ -28,4 +28,17 @@ public class Student {
     public String getSurname() {
         return surname;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Student)) {
+            return false;
+        }
+        return ((Student)(obj)).getId() == this.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
+    }
 }

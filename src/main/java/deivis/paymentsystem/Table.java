@@ -18,73 +18,73 @@ public class Table {
     public void fillTable() {
         TableDataRow temp = null;
         for (logic.Group group : groups) {
-            for (int j = 0; j < group.students.size(); j++) {
+            for (int j = 0; j < group.getStudents().size(); j++) {
                 for (int k = 0; k < 12; k++) {
                     temp = new TableDataRow();
-                    temp.setId(group.students.get(j).getId());
-                    temp.setName(group.students.get(j).getName());
-                    temp.setSurname(group.students.get(j).getSurname());
+                    temp.setId(group.getStudents().get(j).getId());
+                    temp.setName(group.getStudents().get(j).getName());
+                    temp.setSurname(group.getStudents().get(j).getSurname());
                     temp.setGroup(group.getGroupName());
-                    if (group.monthPayment[k] > 0) {
+                    if (group.getMonthPayment()[k] > 0) {
                         switch (k) {
                             case 0 -> {
-                                temp.Month = "Sausis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Sausis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 1 -> {
-                                temp.Month = "Vasaris";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Vasaris");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 2 -> {
-                                temp.Month = "Kovas";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Kovas");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 3 -> {
-                                temp.Month = "Balandis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Balandis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 4 -> {
-                                temp.Month = "Geguze";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Geguze");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 5 -> {
-                                temp.Month = "Birzelis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Birzelis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 6 -> {
-                                temp.Month = "Liepa";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Liepa");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 7 -> {
-                                temp.Month = "Rugpjutis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Rugpjutis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 8 -> {
-                                temp.Month = "Rugsejis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Rugsejis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 9 -> {
-                                temp.Month = "Spalis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Spalis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 10 -> {
-                                temp.Month = "Lapkritis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Lapkritis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                             case 11 -> {
-                                temp.Month = "Groudis";
-                                temp.PaymentAmount = group.monthPayment[k];
+                                temp.setMonth("Groudis");
+                                temp.setPaymentAmount(group.getMonthPayment()[k]);
                                 filledArrayList.add(temp);
                             }
                         }

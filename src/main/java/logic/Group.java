@@ -1,11 +1,12 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Group {
-    public ArrayList<Student> students = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
     private String groupName;
-    public double[] monthPayment = new double[12];
+    private double[] monthPayment = new double[12];
 
     public void addMonthPayment(int month, double amount) {
         monthPayment[month - 1] = amount;
@@ -23,4 +24,19 @@ public class Group {
         return groupName;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public double[] getMonthPayment() {
+        return monthPayment;
+    }
+
+    public void setMonthPayment(double[] monthPayment) {
+        this.monthPayment = monthPayment;
+    }
 }

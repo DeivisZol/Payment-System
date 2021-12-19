@@ -5,14 +5,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Pair;
 import logic.Group;
 import logic.Student;
-import org.controlsfx.control.action.Action;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class HelloController implements Initializable {
     @FXML
@@ -156,6 +158,24 @@ public class HelloController implements Initializable {
         };
     }
 
+    private String monthNumberToName(int number) {
+        return switch (number) {
+            case 1 -> "Sausis";
+            case 2 -> "Vasaris";
+            case 3 -> "Kovas";
+            case 4 -> "Balandis";
+            case 5 -> "Geguze";
+            case 6 -> "Birzelis";
+            case 7 -> "Liepa";
+            case 8 -> "Rugpjutis";
+            case 9 -> "Rugsejis";
+            case 10 -> "Spalis";
+            case 11 -> "Lapkritis";
+            case 12 -> "Gruodis";
+            default -> "";
+        };
+    }
+
     public void printToPdfFile(ActionEvent actionEvent) {
         PrintToFilePdf print = new PrintToFilePdf();
         print.printToFile(getFilteredResults());
@@ -167,6 +187,13 @@ public class HelloController implements Initializable {
     }
 
     private void loadFromFile(ActionEvent actionEvent) {
+        LoadFromFile fileLoader = new LoadFromFile();
+        List<Group> newGroups = fileLoader.loadFromFile(loadFromFileName.getText());
+
+        groups.addAll(newGroups);
+        groupPayment.getItems().addAll(newGroups.stream().map(Group::getGroupName).collect(Collectors.toList()));
+        selectGroup.getItems().addAll(newGroups.stream().map(Group::getGroupName).collect(Collectors.toList()));
+        printToScreen(null);
     }
 
     @Override
