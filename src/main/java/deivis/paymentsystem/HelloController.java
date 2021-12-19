@@ -4,13 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import logic.Group;
+import logic.Student;
+import org.controlsfx.control.action.Action;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class HelloController implements Initializable {
+public class HelloController implements Initializable{
     @FXML
     public Button createGroupButton;
     @FXML
@@ -51,25 +55,31 @@ public class HelloController implements Initializable {
     public TextField loadFromFileName;
 
 
+    @FXML
+    public ChoiceBox<String> selectMonthFrom;
+    @FXML
+    public ChoiceBox<String> selectMonthTo;
+
+
 
     @FXML
     public Button loadTableButton;
     @FXML
-    private TableView<String> table;
+    private TableView<TableDataRow> table;
     @FXML
-    private TableColumn<String, Integer> tableId;
+    private TableColumn<TableDataRow, Integer> tableId;
     @FXML
-    private TableColumn<String, Integer> tableName;
+    private TableColumn<TableDataRow, Integer> tableName;
     @FXML
-    private TableColumn<String, Integer> tableSurname;
+    private TableColumn<TableDataRow, Integer> tableSurname;
     @FXML
-    private TableColumn<String, Integer> tableGroup;
+    private TableColumn<TableDataRow, Integer> tableGroup;
     @FXML
-    private TableColumn<String, Integer> tableMonth;
+    private TableColumn<TableDataRow, Integer> tableMonth;
     @FXML
-    private TableColumn<String, Integer> tablePaymentAmount;
+    private TableColumn<TableDataRow, Integer> tablePaymentAmount;
 
-    ArrayList<Group> groups = new ArrayList<Group>();;
+    ArrayList<Group> groups = new ArrayList<>();
 
     private void createGroup(ActionEvent actionEvent) {
         String groupName = this.createGroupName.getText();
@@ -81,54 +91,113 @@ public class HelloController implements Initializable {
     }
 
     private void addGroupMonthPrice(ActionEvent actionEvent) {
-        String groupName = groupPayment.getSelectionModel().getSelectedItem();
+        double groupMonthPayment = Double.parseDouble(this.groupMonthPayment.getText());
+        Group temp;
+        int month = 0;
         int position = 0;
-        for(int i = 0; groups.size() < i ;i++) {
-            if(groups.get(i).equals(groupName)) {
+        for(int i = 0; groups.size() > i ;i++) {
+            if(groups.get(i).getGroupName().equals(groupPayment.getSelectionModel().getSelectedItem())) {
                 position = i;
             }
         }
-        Group temp;
         temp = groups.get(position);
-        String monthName = selectMonth.getSelectionModel().getSelectedItem();
-        int month = 1;
-        if(monthName.equals("Sausis")) month = 1;
-        if(monthName.equals("Vasaris")) month = 2;
-        if(monthName.equals("Kovas")) month = 3;
-        if(monthName.equals("Balandis")) month = 4;
-        if(monthName.equals("Geguze")) month = 5;
-        if(monthName.equals("Birzelis")) month = 6;
-        if(monthName.equals("Liepa")) month = 7;
-        if(monthName.equals("Rugpjutis")) month = 8;
-        if(monthName.equals("Rugsejis")) month = 9;
-        if(monthName.equals("Spalis")) month = 10;
-        if(monthName.equals("Lapkritis")) month = 11;
-        if(monthName.equals("Gruodis")) month = 12;
-        double groupMonthPayment = Double.parseDouble(this.groupMonthPayment.getText());
+        switch (selectMonth.getSelectionModel().getSelectedItem()) {
+            case "Sausis" -> month = 1;
+            case "Vasaris" -> month = 2;
+            case "Kovas" -> month = 3;
+            case "Balandis" -> month = 4;
+            case "Geguze" -> month = 5;
+            case "Birzelis" -> month = 6;
+            case "Liepa" -> month = 7;
+            case "Rugpjutis" -> month = 8;
+            case "Rugsejis" -> month = 9;
+            case "Spalis" -> month = 10;
+            case "Lapkritis" -> month = 11;
+            case "Gruodis" -> month = 12;
+        }
         temp.addMonthPayment(month, groupMonthPayment);
-        groups.add(position,temp);
-
-        System.out.println(groups.get(0).monthPayment[3]);
+        groups.set(position,temp);
     }
 
+    private void createStudent(ActionEvent actionEvent) {
+        Student student = new Student();
+        student.setName(this.studentName.getText());
+        student.setSurname(this.studentSurname.getText());
+        student.setId(Integer.parseInt(this.studentId.getText()));
+        Group temp;
+        int position = 0;
+        for(int i = 0; groups.size() > i ;i++) {
+            if(groups.get(i).getGroupName().equals(selectGroup.getSelectionModel().getSelectedItem())) {
+                position = i;
+                break;
+            }
+        }
+        temp = groups.get(position);
+        temp.addStudent(student);
+        groups.set(position,temp);
+    }
 
-    private void printToPdfFile(ActionEvent actionEvent){}
-    private void printToCvsFile(ActionEvent actionEvent){}
+    private void printToScreen(ActionEvent actionEvent) {
+        Table results = new Table(groups);
+        table.getItems().clear();
+        tableId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tableName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        tableSurname.setCellValueFactory(new PropertyValueFactory<>("Surname"));
+        tableMonth.setCellValueFactory(new PropertyValueFactory<>("Month"));
+        tableGroup.setCellValueFactory(new PropertyValueFactory<>("Group"));
+        tablePaymentAmount.setCellValueFactory(new PropertyValueFactory<>("PaymentAmount"));
+
+        int monthFrom = monthNameToNumber(selectMonthFrom.getSelectionModel().getSelectedItem());
+        int monthTo = monthNameToNumber(selectMonthTo.getSelectionModel().getSelectedItem());
+
+        TableDataRow[] data = Arrays.stream(results.getFilledTable())
+                .filter(row -> monthNameToNumber(row.getMonth()) >= monthFrom)
+                .filter(row -> monthNameToNumber(row.getMonth()) <= monthTo)
+                .toArray(TableDataRow[]::new);
+
+        table.getItems().addAll(data);
+    }
+
+    private int monthNameToNumber(String name) {
+        return switch (name) {
+            case "Sausis" -> 1;
+            case "Vasaris" -> 2;
+            case "Kovas" -> 3;
+            case "Balandis" -> 4;
+            case "Geguze" -> 5;
+            case "Birzelis" -> 6;
+            case "Liepa" -> 7;
+            case "Rugpjutis" -> 8;
+            case "Rugsejis" -> 9;
+            case "Spalis" -> 10;
+            case "Lapkritis" -> 11;
+            case "Gruodis" -> 12;
+            default -> -1;
+        };
+    }
+
+    public void printToPdfFile(ActionEvent actionEvent){
+        PrintToFilePdf print = new PrintToFilePdf();
+        print.printToFile(groups);
+    }
+    private void printToCvsFile(ActionEvent actionEvent){
+        PrintToFileCvs print = new PrintToFileCvs();
+        print.printToFile(groups);
+    }
     private void loadFromFile(ActionEvent actionEvent){}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createGroupButton.setOnAction(this::createGroup);
         groupPaymentButton.setOnAction(this::addGroupMonthPrice);
+        createStudentButton.setOnAction(this::createStudent);
 
-
-
+        loadTableButton.setOnAction(this::printToScreen);
 
         loadFromFileButton.setOnAction(this::loadFromFile);
         printToCvsFile.setOnAction(this::printToCvsFile);
         printToPdfFile.setOnAction(this::printToPdfFile);
     }
-
 
 
 }

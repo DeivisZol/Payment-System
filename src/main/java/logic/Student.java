@@ -1,23 +1,9 @@
 package logic;
 
 public class Student {
-    protected String name;
-    protected String surname;
-    protected int id;
-    protected String group;
-
-
-    public void Student(String name,String surname, int id, String group) {
-        setGroup(group);
-        setId(id);
-        setName(name);
-        setSurname(surname);
-    }
-
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
+    private String name;
+    private String surname;
+    private int id;
 
     public void setId(int id) {
         this.id = id;
@@ -29,10 +15,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getGroup() {
-        return group;
     }
 
     public int getId() {

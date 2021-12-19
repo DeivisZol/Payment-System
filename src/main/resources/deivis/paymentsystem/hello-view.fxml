@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="683.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="deivis.paymentsystem.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="683.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="deivis.paymentsystem.HelloController">
    <children>
       <Label layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="183.0" text="Sukurti grupe" textFill="WHITE" />
       <TextField fx:id="createGroupName" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="204.0" promptText="Grupes pavadinimas" />
@@ -43,14 +43,14 @@
           </items>
    </ChoiceBox>
       <Label layoutX="17.0" layoutY="170.0" prefHeight="17.0" prefWidth="72.0" text="Menesis" textFill="WHITE" />
-      <TextField fx:id="loadFromFileName" layoutX="15.0" layoutY="379.0" prefHeight="25.0" prefWidth="136.0" promptText="failo pavadinimas" />
-      <Button fx:id="loadTableButton" layoutX="15.0" layoutY="284.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Rodyti lentele" textFill="#790000">
+      <TextField fx:id="loadFromFileName" layoutX="15.0" layoutY="431.0" prefHeight="25.0" prefWidth="136.0" promptText="failo pavadinimas" />
+      <Button fx:id="loadTableButton" layoutX="15.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="204.0" text="Rodyti lentele" textFill="#790000">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="15.0" layoutY="347.0" prefHeight="17.0" prefWidth="197.0" text="Uzkrauti duomenis is failo" textFill="WHITE" />
-      <Button fx:id="loadFromFileButton" layoutX="160.0" layoutY="379.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Uzkrauti" />
+      <Label layoutX="15.0" layoutY="399.0" prefHeight="17.0" prefWidth="197.0" text="Uzkrauti duomenis is failo" textFill="WHITE" />
+      <Button fx:id="loadFromFileButton" layoutX="160.0" layoutY="431.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Uzkrauti" />
       <TableView fx:id="table" layoutX="239.0" layoutY="187.0" prefHeight="320.0" prefWidth="436.0">
         <columns>
           <TableColumn fx:id="tableId" prefWidth="51.0" text="ID" />
@@ -61,5 +61,44 @@
             <TableColumn fx:id="tablePaymentAmount" prefWidth="79.0" text="Suma" />
         </columns>
       </TableView>
+      <Label layoutX="68.0" layoutY="269.0" text="Menesio intervalas" textFill="WHITE" />
+      <ChoiceBox fx:id="selectMonthFrom" layoutX="14.0" layoutY="306.0" prefHeight="25.0" prefWidth="87.0" value="Sausis">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Sausis" />
+                  <String fx:value="Vasaris" />
+                  <String fx:value="Kovas" />
+                  <String fx:value="Balandis" />
+                  <String fx:value="Geguze" />
+                  <String fx:value="Birzelis" />
+                  <String fx:value="Liepa" />
+                  <String fx:value="Rugpjutis" />
+                  <String fx:value="Rugsejis" />
+                  <String fx:value="Spalis" />
+                  <String fx:value="Lapkritis" />
+                  <String fx:value="Gruodis" />
+              </FXCollections>
+          </items>
+      </ChoiceBox>
+      <ChoiceBox fx:id="selectMonthTo" layoutX="133.0" layoutY="306.0" prefHeight="25.0" prefWidth="87.0" value="Gruodis">
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Sausis" />
+                  <String fx:value="Vasaris" />
+                  <String fx:value="Kovas" />
+                  <String fx:value="Balandis" />
+                  <String fx:value="Geguze" />
+                  <String fx:value="Birzelis" />
+                  <String fx:value="Liepa" />
+                  <String fx:value="Rugpjutis" />
+                  <String fx:value="Rugsejis" />
+                  <String fx:value="Spalis" />
+                  <String fx:value="Lapkritis" />
+                  <String fx:value="Gruodis" />
+              </FXCollections>
+          </items>
+      </ChoiceBox>
+      <Label layoutX="45.0" layoutY="286.0" text="Nuo" textFill="WHITE" />
+      <Label layoutX="170.0" layoutY="286.0" text="Iki" textFill="WHITE" />
    </children>
 </AnchorPane>

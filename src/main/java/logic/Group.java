@@ -1,25 +1,25 @@
 package logic;
 
+import java.util.ArrayList;
+
 public class Group{
-    Student[] students;
-    protected String groupName;
+    public ArrayList<Student> students = new ArrayList<>();
+    private String groupName;
     public double[] monthPayment = new double[12];
 
     public void addMonthPayment(int month, double amount) {
         monthPayment[month-1] = amount;
     }
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setGroupName(String groupNames) {
+        groupName = groupNames;
     }
 
-    public void setStudents(Student[] students) {
-        this.students = students;
+    public void addStudent(Student student) {
+        students.add(student);
     }
 
     public String getGroupName() {
         return groupName;
     }
-    public Student[] getStudents() {
-        return students;
-    }
+
 }
