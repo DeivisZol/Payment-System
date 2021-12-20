@@ -9,6 +9,8 @@ module deivis.paymentsystem {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires kernel;
+    requires layout;
 
     opens deivis.paymentsystem to javafx.fxml;
     exports deivis.paymentsystem;
